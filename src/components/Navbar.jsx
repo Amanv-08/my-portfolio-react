@@ -6,7 +6,7 @@ const Navbar = () => {
     const closeMenu = () => setIsMenuOpen(false);
 
     return (
-        <nav className="relative flex items-center justify-between border-b border-white/10 px-6 py-5">
+        <nav className="fixed top-0 left-0 z-50 w-full flex items-center justify-between border-b border-white/10 bg-[#111313]/95 px-6 py-5 backdrop-blur-lg">
             <a href="#home" className="flex items-center gap-2">
                 <Code2 className="text-green-400" size={28} />
                 <span>My</span><span className="text-green-400">Portfolio</span>
@@ -26,7 +26,7 @@ const Navbar = () => {
                 {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
             {isMenuOpen && (
-                <div className="absolute md:hidden left-0 items-center top-full z-50 flex w-full flex-col gap-5 border-b border-white/10 bg-[#111313] p-6">
+                <div className="absolute md:hidden le items-center top-full z-50 flex w-full flex-col gap-5 border-b border-white/10 bg-[#111313] p-6">
                     <a href="#home" onClick={closeMenu} className="hover:text-green-400">Home</a>
                     <a href="#about" onClick={closeMenu} className="hover:text-green-400">About</a>
                     <a href="#projects" onClick={closeMenu} className="hover:text-green-400">Projects</a>
