@@ -1,8 +1,42 @@
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { Mail, ArrowUpRight, Send } from "lucide-react";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+
+    const sendEmail = async (evt) => {
+        evt.preventDefault();
+
+        try {
+            await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                {
+                    from_name: name,
+                    reply_to: email,
+                    message: message,
+                },
+                {
+                    publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+                }
+            );
+
+            alert("Message sent successfully! 🎉");
+
+            setName("");
+            setEmail("");
+            setMessage("");
+        } catch (error) {
+            console.error("Email sending failed:", error);
+            alert("Message could not be sent. Please try again.");
+        }
+    };
     return (
         <section id="contact" className="relative flex min-h-screen items-center overflow-x-hidden bg-[#111313] px-5 py-24 text-white sm:px-8 md:px-12">
             <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -109,7 +143,9 @@ const Contact = () => {
                         </p>
                     </div>
 
-                    <form className="flex flex-col gap-5">
+                    <form
+                        onSubmit={sendEmail}
+                        className="flex flex-col gap-5">
                         <div className="flex flex-col gap-2">
                             <label htmlFor="name"
                                 className="text-sm font-medium text-gray-300">
@@ -117,9 +153,14 @@ const Contact = () => {
                             </label>
 
                             <input
+                                value={name}
+                                onChange={(evt) => {
+                                    setName(evt.target.value);
+                                }}
                                 id="name"
                                 name="name"
                                 type="text"
+                                required
                                 placeholder="Enter your name"
                                 className="w-full rounded-xl border border-white/10 bg-[#111313] px-4 py-3 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-green-400/60 focus:ring-2 focus:ring-green-400/10"
                             />
@@ -133,9 +174,14 @@ const Contact = () => {
                             </label>
 
                             <input
+                                value={email}
+                                onChange={(evt) => {
+                                    setEmail(evt.target.value);
+                                }}
                                 id="email"
                                 name="email"
                                 type="email"
+                                required
                                 placeholder="Enter your email"
                                 className="w-full rounded-xl border border-white/10 bg-[#111313] px-4 py-3 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-green-400/60 focus:ring-2 focus:ring-green-400/10"
                             />
@@ -149,15 +195,20 @@ const Contact = () => {
                             </label>
 
                             <textarea
+                                value={message}
+                                onChange={(evt) =>
+                                    setMessage(evt.target.value)
+                                }
                                 id="message"
                                 name="message"
+                                required
                                 rows={5}
                                 placeholder="Tell me about your project..."
                                 className="w-full resize-y rounded-xl border border-white/10 bg-[#111313] px-4 py-3 text-sm leading-6 text-white outline-none transition placeholder:text-gray-600 focus:border-green-400/60 focus:ring-2 focus:ring-green-400/10"
                             />
                         </div>
 
-                        <button type="button"
+                        <button type="submit"
                             className="group mt-1 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-400 px-5 py-3.5 font-semibold text-[#111313] transition duration-300 hover:bg-green-300 active:scale-[0.98]"
                         >
                             Send Message
