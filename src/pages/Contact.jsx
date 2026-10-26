@@ -8,35 +8,55 @@ const Contact = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
 
     const sendEmail = async (evt) => {
         evt.preventDefault();
+
+        if (!name.trim() || !email.trim() || !message.trim()) {
+            setError(true);
+            setSuccess(false);
+            return;
+        }
+
+        setError(false);
+        setSuccess(false);
+        setLoading(true);
 
         try {
             await emailjs.send(
                 import.meta.env.VITE_EMAILJS_SERVICE_ID,
                 import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
                 {
-                    from_name: name,
-                    reply_to: email,
-                    message: message,
+                    from_name: name.trim(),
+                    reply_to: email.trim(),
+                    message: message.trim(),
                 },
                 {
                     publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY
                 }
             );
 
-            alert("Message sent successfully! 🎉");
+            /* alert("Message sent successfully! 🎉"); */
+            setSuccess(true);
 
             setName("");
             setEmail("");
             setMessage("");
         } catch (error) {
             console.error("Email sending failed:", error);
-            alert("Message could not be sent. Please try again.");
+
+            /* alert("Message could not be sent. Please try again."); */
+            setError(true);
+        }
+        finally {
+            setLoading(false);
         }
     };
+
     return (
         <section id="contact" className="relative flex min-h-screen items-center overflow-x-hidden bg-[#111313] px-5 py-24 text-white sm:px-8 md:px-12">
             <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -160,9 +180,10 @@ const Contact = () => {
                                 id="name"
                                 name="name"
                                 type="text"
+                                disabled={loading}
                                 required
                                 placeholder="Enter your name"
-                                className="w-full rounded-xl border border-white/10 bg-[#111313] px-4 py-3 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-green-400/60 focus:ring-2 focus:ring-green-400/10"
+                                className="w-full rounded-xl border border-white/10 bg-[#111313] px-4 py-3 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-green-400/60 focus:ring-2 focus:ring-green-400/10 disabled:cursor-not-allowed disabled:opacity-50"
                             />
                         </div>
 
@@ -181,9 +202,10 @@ const Contact = () => {
                                 id="email"
                                 name="email"
                                 type="email"
+                                disabled={loading}
                                 required
                                 placeholder="Enter your email"
-                                className="w-full rounded-xl border border-white/10 bg-[#111313] px-4 py-3 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-green-400/60 focus:ring-2 focus:ring-green-400/10"
+                                className="w-full rounded-xl border border-white/10 bg-[#111313] px-4 py-3 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-green-400/60 focus:ring-2 focus:ring-green-400/10 disabled:cursor-not-allowed disabled:opacity-50"
                             />
                         </div>
 
@@ -201,19 +223,34 @@ const Contact = () => {
                                 }
                                 id="message"
                                 name="message"
+                                disabled={loading}
                                 required
                                 rows={5}
                                 placeholder="Tell me about your project..."
-                                className="w-full resize-y rounded-xl border border-white/10 bg-[#111313] px-4 py-3 text-sm leading-6 text-white outline-none transition placeholder:text-gray-600 focus:border-green-400/60 focus:ring-2 focus:ring-green-400/10"
+                                className="w-full resize-y rounded-xl border border-white/10 bg-[#111313] px-4 py-3 text-sm leading-6 text-white outline-none transition placeholder:text-gray-600 focus:border-green-400/60 focus:ring-2 focus:ring-green-400/10 disabled:cursor-not-allowed disabled:opacity-50"
                             />
                         </div>
 
-                        <button type="submit"
-                            className="group mt-1 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-400 px-5 py-3.5 font-semibold text-[#111313] transition duration-300 hover:bg-green-300 active:scale-[0.98]"
-                        >
-                            Send Message
-                            <Send size={17} className="transition-transform group-hover:translate-x-1" />
-                        </button>
+                        {!success && (
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="group mt-1 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-400 px-5 py-3.5 font-semibold text-[#111313] transition duration-300 hover:bg-green-300 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                            >
+                                {loading ? ('Sending message...') : (
+                                    <> Send Message <Send size={17} className="transition-transform group-hover:translate-x-1" /> </>)}
+                            </button>
+                        )}
+                        {success && (
+                            <p className="mt-4 text-center text-green-400" role="status">
+                                Message sent successfully! 🎉
+                            </p>
+                        )}
+                        {error && (
+                            <p className="text-center text-sm text-red-400" role="alert">
+                                Failed to send message. Please try again! ❌
+                            </p>
+                        )}
                     </form>
 
                     <p className="mt-5 text-center text-xs leading-5 text-gray-500">
