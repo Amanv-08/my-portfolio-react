@@ -41,7 +41,7 @@ const Contact = () => {
                     message: message.trim(),
                 },
                 {
-                    PUBLIC_KEY
+                    publicKey: PUBLIC_KEY
                 }
             );
 
