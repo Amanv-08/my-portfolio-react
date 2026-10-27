@@ -1,16 +1,132 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# My Portfolio 🚀
 
-Currently, two official plugins are available:
+**Version:** 1.0.0
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A personal portfolio website built with React and Vite to showcase my skills, projects, and experience.
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Responsive portfolio design
+- Home, About, Projects, and Contact pages
+- Smooth animations using Framer Motion
+- Interactive custom cursor
+- Modern icons using React Icons and Lucide React
+- Contact form integration with EmailJS
+- Resume PDF
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Icons
+- Lucide React
+- EmailJS
+
+## 📁 Project Structure
+
+```text
+my-portfolio/
+├── public/
+│   ├── images/
+│   ├── mylogo.png
+│   └── resume.pdf
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Cursor.jsx
+│   │   └── Navbar.jsx
+│   ├── pages/
+│   │   ├── About.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Home.jsx
+│   │   └── Projects.jsx
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .env
+├── .gitignore
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+## ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Amanv-08/my-portfolio-react
+```
+
+Navigate to the project directory:
+
+```bash
+cd my-portfolio
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+## 📧 EmailJS Configuration
+
+Create a `.env` file in the root directory and add your EmailJS credentials:
+
+```env
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+Access these variables in React using `import.meta.env`.
+
+Never upload your `.env` file to GitHub.
+
+## 📜 Available Scripts
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Check code with ESLint |
+
+## 🚀 Deployment
+
+This project can be deployed using:
+
+- Vercel
+- Netlify
+- GitHub Pages
+
+Build the project before deployment:
+
+```bash
+npm run build
+```
+
+The production files will be generated in the `dist/` directory.
+
+## 👨‍💻 Author
+
+**Your Name**
+
+- GitHub: [Amanv-08](https://github.com/Amanv-08)
+- LinkedIn: [Amanv08](https://www.linkedin.com/in/amanv08/)
+- Portfolio: [Live Website](https://your-portfolio-url.com)
+
+## 📄 License
+
+Created for personal portfolio and learning purposes.
