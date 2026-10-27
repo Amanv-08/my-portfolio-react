@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
-import { Mail, ArrowUpRight, Send } from "lucide-react";
+import { CiLinkedin } from "react-icons/ci";
+import { Send } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
@@ -58,8 +59,8 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="relative flex min-h-screen items-center overflow-x-hidden bg-[#111313] px-5 py-24 text-white sm:px-8 md:px-12">
-            <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <section id="contact" className="relative scroll-mt-15 px-5 py-10 sm:px-8 md:px-12 md:py-12">
+            <div className="mx-auto grid w-full max-w-7xl items-start gap-12 lg:grid-cols-2 lg:gap-16">
 
                 {/* Left Column */}
                 <motion.div
@@ -81,67 +82,74 @@ const Contact = () => {
                         </h2>
 
                         <p className="mt-4 max-w-lg text-sm text-gray-400 sm:text-base">
-                            💌 Have a project in mind? Let’s connect! 👋
+                            💌 Have a project in mind? Let’s connect!
                         </p>
                         <p className="mt-4 max-w-lg text-sm text-gray-400 sm:text-base">
-                            🚀 Open to new projects, creative ideas, and exciting opportunities. ✨
+                            🚀 Open to new projects, creative ideas, and exciting opportunities.
                         </p>
                         <p className="mt-4 max-w-lg text-sm text-gray-400 sm:text-base">
-                            🤝 Let’s create something amazing together! 🤝
+                            🤝 Let’s create something amazing together!
                         </p>
                     </div>
 
-                    {/* Email Card */}
-                    <a
-                        href="mailto:its_me_01@gmail.com"
-                        className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-[#181c1c] p-5 transition duration-300 hover:border-green-400/40 hover:bg-[#1b211e]"
-                    >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-green-400/20 bg-green-400/10 text-green-400 transition group-hover:bg-green-400 group-hover:text-[#111313]">
-                            <Mail size={22} />
-                        </div>
+                    {/* Feature Cards */}
+                    <div className="grid grid-cols-3 gap-3">
+                        {[
+                            { icon: "⌘", title: "Responsive", subtitle: "Every screen" },
+                            { icon: "↯", title: "Interactive", subtitle: "Smooth UI" },
+                            { icon: "◇", title: "Modern UI", subtitle: "Clean design" },
+                        ].map((item, index) => (
+                            <motion.div
+                                key={item.title}
+                                initial={{ opacity: 0, y: 15 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ delay: index * 0.12, duration: 0.4 }}
+                                whileHover={{ y: -5 }}
+                                className="rounded-xl border border-white/10 bg-white/2 p-3 transition-colors duration-300 hover:border-green-400/40 hover:bg-green-400/4 sm:p-4"
+                            >
+                                <span className="text-2xl text-green-400">
+                                    {item.icon}
+                                </span>
 
-                        <div className="min-w-0 flex-1">
-                            <p className="text-sm text-gray-400">Email Me</p>
-                            <p className="mt-1 break-all font-medium text-white">
-                                its_me_01@gmail.com
-                            </p>
-                        </div>
+                                <h3 className="mt-3 text-xs font-semibold text-gray-200 sm:text-sm">
+                                    {item.title}
+                                </h3>
 
-                        <ArrowUpRight
-                            size={20}
-                            className="shrink-0 text-gray-500 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-green-400"
-                        />
-                    </a>
-
-                    {/* GitHub Card */}
-                    <a
-                        href="https://github.com/Amanv_08"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-[#181c1c] p-5 transition duration-300 hover:border-green-400/40 hover:bg-[#1b211e]"
-                    >
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-green-400/20 bg-green-400/10 text-green-400 transition group-hover:bg-green-400 group-hover:text-[#111313]">
-                            <FaGithub size={22} />
-                        </div>
-
-                        <div className="min-w-0 flex-1">
-                            <p className="text-sm text-gray-400">GitHub</p>
-                            <p className="mt-1 font-medium text-white">
-                                Explore My Projects
-                            </p>
-                        </div>
-
-                        <ArrowUpRight
-                            size={20}
-                            className="shrink-0 text-gray-500 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-green-400"
-                        />
-                    </a>
+                                <p className="mt-1 text-[10px] text-gray-500 sm:text-xs">
+                                    {item.subtitle}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
 
                     <div className="border-l-2 border-green-400/50 pl-4">
                         <p className="text-sm leading-6 text-gray-400">
                             Have an idea? I'm always happy to connect, learn, and
                             explore new opportunities.
                         </p>
+                    </div>
+                    {/* Social Links */}
+                    <div className="mt-2 flex items-center gap-5">
+                        <a
+                            href="https://www.linkedin.com/in/amanv08/"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="LinkedIn"
+                            className="text-gray-400 transition hover:text-green-400"
+                        >
+                            <CiLinkedin size={35} />
+                        </a>
+                        <a
+                            href="https://github.com/Amanv-08"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="GitHub"
+                            className="text-gray-400 transition hover:text-green-400"
+                        >
+                            <FaGithub size={32} />
+                        </a>
+
                     </div>
                 </motion.div>
 
@@ -155,7 +163,7 @@ const Contact = () => {
                 >
                     <div className="mb-7">
                         <h3 className="text-xl font-semibold sm:text-2xl">
-                            Send a Message
+                            Send a <span className="text-green-400">Message</span>
                         </h3>
 
                         <p className="mt-2 text-sm leading-6 text-gray-400">

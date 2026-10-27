@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, Download, SquareUserRound } from "lucide-react";
+import { ArrowDown, ArrowRight, Download } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { motion } from "framer-motion";
@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 
 const Home = () => {
     return (
-        <section id="home" className="relative flex min-h-screen items-center px-5 py-24 sm:px-8 md:px-12">
-            <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <section id="home" className="relative flex min-h-screen items-center px-5 pt-24 pb-10 sm:px-8 md:px-12">
+            <div className="mx-auto grid w-full max-w-7xl items-start gap-12 lg:grid-cols-2 lg:gap-16">
 
                 {/* Left Side */}
                 <motion.div
@@ -38,8 +38,8 @@ const Home = () => {
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/10 px-4 py-3 text-sm font-semibold transition hover:border-green-400 hover:text-green-400 active:scale-95 sm:px-5 sm:text-base"
                         >
+                            My Resume
                             <Download size={18} />
-                            Download Resume
                         </a>
 
                         <a
@@ -49,19 +49,12 @@ const Home = () => {
                             View Projects
                             <ArrowRight size={18} />
                         </a>
-
-                        <a
-                            href="#contact"
-                            className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/10 px-4 py-3 text-sm font-semibold transition hover:border-green-400 hover:text-green-400 active:scale-95 sm:px-5 sm:text-base"
-                        >
-                            <SquareUserRound size={18} /> Contact Me
-                        </a>
                     </div>
 
                     {/* Social Links */}
                     <div className="mt-8 flex items-center gap-5">
                         <a
-                            href="https://linkedin.com/"
+                            href="https://www.linkedin.com/in/amanv08/"
                             target="_blank"
                             rel="noreferrer"
                             aria-label="LinkedIn"
@@ -70,7 +63,7 @@ const Home = () => {
                             <CiLinkedin size={35} />
                         </a>
                         <a
-                            href="https://github.com/"
+                            href="https://github.com/Amanv-08"
                             target="_blank"
                             rel="noreferrer"
                             aria-label="GitHub"

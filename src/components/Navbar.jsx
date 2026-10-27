@@ -1,5 +1,5 @@
 import { Code2, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,17 +13,37 @@ const Navbar = () => {
         { name: "Contact", href: "#contact" },
     ];
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ["home", "about", "projects", "contact"];
+
+            for (const id of sections.toReversed()) {
+                const section = document.getElementById(id);
+
+                if (section && section.getBoundingClientRect().top <= 150) {
+                    setActiveLink(`#${id}`);
+                    break;
+                };
+            };
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        handleScroll();
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     const handleLinkClick = (href) => {
         setActiveLink(href);
         closeMenu();
     };
 
     const getLinkClass = (href) =>
-        `transition-colors duration-200 ${ activeLink === href ? "text-green-400" : "text-gray-300hover:text-green-400" }`;
+        `transition-colors duration-200 ${activeLink === href ? "text-green-400" : "text-gray-300hover:text-green-400"}`;
 
     return (
         <nav className="fixed top-0 left-0 z-50 w-full flex items-center justify-between border-b border-white/10 bg-[#111313]/95 px-6 py-5 backdrop-blur-lg">
-            
+
             {/* Logo */}
             <a
                 href="#home"

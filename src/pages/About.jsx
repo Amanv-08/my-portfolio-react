@@ -18,7 +18,7 @@ const skills = [
 
 const About = () => {
     return (
-        <section id="about" className="relative px-5 py-20 sm:px-8 md:px-12" >
+        <section id="about" className="relative scroll-mt-20 px-5 py-10 sm:px-8 md:px-12 md:py-12">
             <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
 
                 {/* About Content */}
@@ -107,16 +107,16 @@ const About = () => {
                         })}
                     </div>
                 </motion.div>
-                {/* Scroll Indicator */}
-                <a
-                    href="#projects"
-                    aria-label="Scroll to About section"
-                    className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 animate-bounce text-gray-500 transition hover:text-green-400 md:block"
-                >
-                    <ArrowDown size={22} />
-                </a>
 
             </div>
+            {/* Scroll Indicator */}
+            <a
+                href="#projects"
+                aria-label="Scroll to Projects section"
+                className="absolute bottom-2 left-1/2 hidden -translate-x-1/2 animate-bounce text-gray-500 transition hover:text-green-400 md:block"
+            >
+                <ArrowDown size={22} />
+            </a>
         </section>
     );
 };

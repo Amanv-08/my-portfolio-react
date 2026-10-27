@@ -16,7 +16,7 @@ const projects = [
 
 const Projects = () => {
     return (
-        <section id="projects" className="min-h-screen bg-[#111313] px-5 py-24 text-white sm:px-8 md:px-12">
+        <section id="projects"  className="relative scroll-mt-15 px-5 py-10 sm:px-8 md:px-12 md:py-12">
             <div className="mx-auto max-w-6xl">
 
                 {/* Section Heading */}
