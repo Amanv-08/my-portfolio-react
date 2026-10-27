@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import Cursor from "./components/Cursor";
+import Footer from "./components/Footer";
 
 
 
@@ -16,6 +17,7 @@ function App() {
       <About />
       <Projects />
       <Contact />
+      <Footer />
     </div>
   );
 }

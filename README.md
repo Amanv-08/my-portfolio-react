@@ -124,8 +124,8 @@ The production files will be generated in the `dist/` directory.
 **Your Name**
 
 - GitHub: [Amanv-08](https://github.com/Amanv-08)
-- LinkedIn: [Amanv08](https://www.linkedin.com/in/amanv08/)
-- Portfolio: [Live Website](https://your-portfolio-url.com)
+- LinkedIn: [Amanv08](https://www.linkedin.com/in/amanv08)
+- Portfolio: [Live Website](https://amanv-08.vercel.app)
 
 ## 📄 License
 
